@@ -45,13 +45,13 @@ fn main() -> Result<(), VerificationError> {
     type Val = Goldilocks;
     type Challenge = BinomialExtensionField<Val, 2>;
 
-    type Perm = Poseidon<Val, MdsMatrixGoldilocks, 8, 7>;
-    let perm = Perm::new_from_rng(4, 22, MdsMatrixGoldilocks, &mut thread_rng());
+    type Perm = Poseidon<Val, MdsMatrixGoldilocks, 12, 7>;
+    let perm = Perm::new_from_rng(8, 22, MdsMatrixGoldilocks, &mut thread_rng());
 
-    type MyHash = PaddingFreeSponge<Perm, 8, 4, 4>;
+    type MyHash = PaddingFreeSponge<Perm, 12, 4, 4>;
     let hash = MyHash::new(perm.clone());
 
-    type MyCompress = TruncatedPermutation<Perm, 2, 4, 8>;
+    type MyCompress = TruncatedPermutation<Perm, 2, 4, 12>;
     let compress = MyCompress::new(perm.clone());
 
     type ValMmcs = FieldMerkleTreeMmcs<
@@ -69,7 +69,7 @@ fn main() -> Result<(), VerificationError> {
     type Dft = Radix2DitParallel;
     let dft = Dft {};
 
-    type Challenger = DuplexChallenger<Val, Perm, 8>;
+    type Challenger = DuplexChallenger<Val, Perm, 12>;
 
     const NUM_FIBONACCI_ROWS: usize = 64;
     let mut values: Vec<Vec<u64>> = Vec::with_capacity(NUM_FIBONACCI_ROWS);
