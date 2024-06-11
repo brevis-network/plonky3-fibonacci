@@ -6,7 +6,7 @@ use p3_dft::Radix2DitParallel;
 use p3_field::extension::BinomialExtensionField;
 use p3_field::{AbstractField, Field};
 use p3_fri::{FriConfig, TwoAdicFriPcs};
-use p3_goldilocks::{DiffusionMatrixGoldilocks, Goldilocks, MdsMatrixGoldilocks};
+use p3_goldilocks::{Goldilocks, MdsMatrixGoldilocks};
 use p3_keccak_air::{FibonacciAir, NUM_FIBONACCI_COLS};
 use p3_matrix::dense::RowMajorMatrix;
 use p3_matrix::Matrix;
@@ -20,7 +20,6 @@ use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
 use tracing_subscriber::{EnvFilter, Registry};
 use zkhash::fields::goldilocks::FpGoldiLocks;
-use zkhash::poseidon::poseidon_instance_goldilocks::RC12;
 use p3_poseidon::Poseidon;
 
 const WIDTH: usize = 12;
