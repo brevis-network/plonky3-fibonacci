@@ -21,6 +21,7 @@ use tracing_subscriber::util::SubscriberInitExt;
 use tracing_subscriber::{EnvFilter, Registry};
 use zkhash::fields::goldilocks::FpGoldiLocks;
 use zkhash::poseidon::poseidon_instance_goldilocks::RC12;
+use bincode;
 
 const WIDTH: usize = 12;
 
@@ -148,8 +149,10 @@ fn main() -> Result<(), VerificationError> {
 
     let proof = prove::<MyConfig, _>(&config, &FibonacciAir {}, &mut challenger, trace, &vec![]);
 
+    println!("proof size: {} bytes", bincode::serialize(&proof).unwrap().len());
+
     std::fs::write(
-        "proof_fibonacci.json",
+        "proof_poseidon2_fibonacci.json",
         serde_json::to_string(&proof).unwrap(),
     )
     .unwrap();
