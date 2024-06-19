@@ -71,7 +71,7 @@ fn main() -> Result<(), VerificationError> {
 
     type Challenger = DuplexChallenger<Val, Perm, 12>;
 
-    const NUM_FIBONACCI_ROWS: usize = 64;
+    const NUM_FIBONACCI_ROWS: usize = 1<<6;
     let mut values: Vec<Vec<u64>> = Vec::with_capacity(NUM_FIBONACCI_ROWS);
     values.push(vec![1, 1, 2]);
     for i in 1..NUM_FIBONACCI_ROWS {
