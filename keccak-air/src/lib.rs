@@ -11,13 +11,14 @@ mod generation;
 mod logic;
 mod round_flags;
 mod fibonacci_air;
+mod trace;
 
 pub use air::*;
 pub use fibonacci_air::*;
 pub use columns::*;
 pub use constants::*;
 pub use generation::*;
-
+pub use trace::*;
 pub const NUM_ROUNDS: usize = 24;
 const BITS_PER_LIMB: usize = 16;
 pub const U64_LIMBS: usize = 64 / BITS_PER_LIMB;
