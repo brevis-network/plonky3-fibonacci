@@ -108,16 +108,7 @@ fn main() -> Result<(), VerificationError> {
     // 1 1 2
     // 1 2 3
     // ...
-    const NUM_FIBONACCI_ROWS: usize = 64;
-    let mut values: Vec<Vec<u64>> = Vec::with_capacity(NUM_FIBONACCI_ROWS);
-    values.push(vec![1, 1, 2]);
-    for i in 1..NUM_FIBONACCI_ROWS {
-        values.push(vec![
-            values[i - 1][1],
-            values[i - 1][2],
-            values[i - 1][1] + values[i - 1][2],
-        ]);
-    }
+    const NUM_FIBONACCI_ROWS: usize = 1<<7;
     let mut trace =  RowMajorMatrix::new(vec![Val::zero(); NUM_FIBONACCI_ROWS * NUM_FIBONACCI_COLS], NUM_FIBONACCI_COLS);
     let rows = trace.borrow_rows_mut::<FibonacciCols<Val>>();
     rows[0].a = Val::from_canonical_u64(1);
