@@ -144,7 +144,7 @@ fn main() -> Result<(), VerificationError> {
 
     let proof = prove::<MyConfig, _>(&config, &FibonacciAir {}, &mut challenger, trace, &vec![]);
 
-    println!("proof size: {} bytes", bincode::serialize(&proof).unwrap().len());
+    println!("proof size: {} bytes {}KB", bincode::serialize(&proof).unwrap().len(), bincode::serialize(&proof).unwrap().len()/1024);
 
     std::fs::write(
         "proof_poseidon2_fibonacci.json",
