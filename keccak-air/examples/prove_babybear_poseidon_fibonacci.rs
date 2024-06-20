@@ -38,8 +38,8 @@ fn main() -> Result<(), VerificationError> {
     type Perm = Poseidon<Val, MdsMatrixBabyBear, 8, 7>;
 
     let perm = Perm::new_from_rng(
-        4,
-        22,
+        8,
+        13,
         MdsMatrixBabyBear,
         &mut thread_rng(),
     );
@@ -72,7 +72,7 @@ fn main() -> Result<(), VerificationError> {
     // 1 1 2
     // 1 2 3
     // ...
-    const NUM_FIBONACCI_ROWS: usize = 1<<7;
+    const NUM_FIBONACCI_ROWS: usize = 1<<6;
     let mut trace =  RowMajorMatrix::new(vec![Val::zero(); NUM_FIBONACCI_ROWS * NUM_FIBONACCI_COLS], NUM_FIBONACCI_COLS);
     let rows = trace.borrow_rows_mut::<FibonacciCols<Val>>();
     rows[0].a = Val::from_canonical_u64(1);
